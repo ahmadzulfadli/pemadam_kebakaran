@@ -52,7 +52,7 @@ void setup()
 
 void loop()
 {
-  //baca sensor---------------------------------------
+  //baca sensor--------------------------------------
   while(Serial.available()>0){
     delay(10);
     c = Serial.read();

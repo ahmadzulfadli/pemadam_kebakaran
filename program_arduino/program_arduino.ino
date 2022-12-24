@@ -9,6 +9,7 @@ const int buzz = 8;
 
 // inialisasi variabel data
 int data1,data2,data3,data4;
+int hitung;
 
 void setup()
 {
@@ -32,8 +33,8 @@ void loop()
 
 void baca_sensor(){
   data1 = digitalRead(api);
-  data2 = digitalRead(asap);
   data3 = digitalRead(api1);
+  data2 = digitalRead(asap);
   data4 = digitalRead(asap1);
 
   Serial.print("Pin Api1: ");Serial.println(data1);
@@ -44,15 +45,24 @@ void baca_sensor(){
   //kondisi------------------------------------------------
   if (data1 == 0 or data2 == 0 or data3 == 0 or data4 == 0)
   {
+    hitung ++;
     tone(buzz, 1000, 200);
     delay(250);
     tone(buzz, 1000, 200);
     delay(250);
-    serial.write("kebakaran");
+    if (hitung < 2){
+      serial.write("kebakaran");
+      Serial.println("kirim");
+      
+    }
+    Serial.println(hitung);
+    
   }
   else
   {
     Serial.println("Aman");
+    delay(2000);
+    hitung=0;
   }
-  delay(100);
+  delay(50);
 }
